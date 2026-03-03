@@ -33,19 +33,3 @@ dirigidas=Director.objects.annotate(num_series=Count('series'))
 
 # Ejercicio 9
 serie = Serie.objects.order_by('-capitulos__duracion_minutos').first()
-
-# Ejercicio 10
-capitulos=Capitulo.objects.select_related("serie__director")
-for c in capitulos:
-    print(
-        c.titulo,
-        c.serie.titulo,
-        c.serie.director.nombre
-    )
-
-# Ejercicio 11
-directores=Director.objects.prefetch_related('series')
-for d in directores:
-    print(d.nombre)
-    for serie in d.series.all():
-        print("  -", serie.titulo)

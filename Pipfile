@@ -5,10 +5,13 @@ name = "pypi"
 
 [packages]
 django = "*"
+django-import-export = "*"
 
 [dev-packages]
 flake8 = "*"
-
+django-extensions = "*"
+django-debug-toolbar = "*"
+pygraphviz = "*"
 [requires]
 python_version = "3.12"
 python_full_version = "3.12.3"

@@ -11,10 +11,13 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+# Templates
+BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -37,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'todos'
+
 ]
 
 MIDDLEWARE = [
@@ -116,3 +119,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+if DEBUG:
+    # Añadimos las herramientas de desarrollo
+    INSTALLED_APPS += [
+        'django_extensions',
+        'debug_toolbar',
+    ]
+    
+    # El middleware del Toolbar (debe ir al principio o cerca del inicio)
+    MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware'] + MIDDLEWARE
+    
+    # IPs permitidas para el Toolbar (solo tú en local)
+    INTERNAL_IPS = ['127.0.0.1']

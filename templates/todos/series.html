@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block headTitle %}Series{% endblock headTitle %}
+
+{% block mainTitle %}Series{% endblock mainTitle %}
+
+{% block content %}
+    <h2>{{encabezado}}</h2>
+    <ul>
+        {% for serie in lista_series  %}
+    
+            <li>
+                <a href={% url "todos:serieDetail" serie.id %}>
+                    {{serie.titulo}}
+                </a>
+            </li>
+            
+    
+    
+        {% endfor %}
+
+    </ul>
+
+{% endblock content %}

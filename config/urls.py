@@ -16,13 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-import settings
+from .settings import DEBUG
+from .views import (homeView,aboutView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('__debug__/', include('debug_toolbar.urls')),
+    path('',homeView,name='home'),
+    path('aboutUs/',aboutView,name='aboutUs'),
+    path('todos/',include('todos.urls'))
 ]
-if settings.DEBUG:
+if DEBUG:
     import debug_toolbar
     # Añadimos las URLs del Toolbar
     urlpatterns = [

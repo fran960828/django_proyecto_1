@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block headTitle %}{{info_serie.titulo}}{% endblock headTitle %}
+
+{% block mainTitle %}{{info_serie.titulo}}{% endblock mainTitle %}
+
+{% block content %}
+
+    <p>La serie se estrenará:{{info_serie.fecha_estreno}}</p>
+    <p>La serie será dirigida por: {{info_serie.director}}</p>
+    <p>La categoría de la serie es: {{info_serie.categoria}}</p>
+
+
+
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block head_title %}Cursos{% endblock head_title %}
+
+{% block body_title %}Nuestros Cursos{% endblock body_title %}
+
+
+
+{% block body_content %}
+    {% for course in courses %}
+    <article>
+        <h3>{{course.title}}</h3>
+        <p>{{course.date_creation}}</p>
+        <p>{{course.content|truncatewords:20}}</p>
+        <p><a href={% url "courses:course_detail" course.id %}>ver mas</a></p>
+    </article>
+    
+    {% endfor %}
+
+{% endblock body_content %}

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block head_title %}BLOG{% endblock head_title %}
+
+{% block body_title %}{{new_detail.title}}{% endblock body_title %}
+
+{% block body_content %}
+    <section class="hero">
+        <p>{{new_detail.date_creation}}-{{new_detail.author}}</p>
+        <p>{{new_detail.content}}</p>
+        <p><a href={% url "blog:news" %}>Volver</a></p>
+    </section>
+
+{% endblock body_content %}

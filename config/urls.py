@@ -16,11 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from .settings import DEBUG
+from django.conf.urls.static import static
+from .settings import DEBUG,MEDIA_URL,MEDIA_ROOT
 import debug_toolbar
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("",include('core.urls')),
+    path("",include('blog.urls')),
+    path("",include('courses.urls'))
 ]
 
 if DEBUG:
@@ -28,3 +32,6 @@ if DEBUG:
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),
     ] + urlpatterns
+    
+    # 2. Agregamos la ruta para servir archivos MEDIA al FINAL
+    urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

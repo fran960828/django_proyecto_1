@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core',
+    'blog',
+    'courses'
 
 ]
 
@@ -58,7 +61,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,6 +122,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR/"static",]
+
+# Media files
+# URL pública para acceder a los archivos
+MEDIA_URL = '/media/'
+
+# Ruta física donde se guardarán los archivos subidos
+# Se creará una carpeta llamada 'media' en la raíz de tu proyecto
+MEDIA_ROOT = BASE_DIR / 'media'
 
 if DEBUG:
     # Añadimos las herramientas de desarrollo

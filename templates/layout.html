@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block head_title %}Conquer{% endblock head_title %}</title>
+    
+</head>
+<body>
+    {% include "_includes/_header.html" %}
+    <h1>
+        {% block body_title %}Conquer blocks{% endblock body_title %}
+    </h1>
+
+    {% block body_content %}
+    <p>layout</p>
+    {% endblock body_content %}
+    {% include "_includes/_footer.html" %}
+</body>
+</html>

@@ -6,8 +6,14 @@
 
 {% block body_content %}
     <section class="hero">
+        {% if course_detail.main_image %}
+        <picture>
+            <img src={{ course_detail.main_image.thumbnails.small.url }}>
+
+        </picture>
+        {% endif %}
         <p>{{course_detail.date_creation}}</p>
-        <p>{{course_detail.content}}</p>
+        <p>{{course_detail.content|safe}}</p>
         {% if course_detail.topics %}
             <a href="{{ course_detail.topics.url }}" 
             download>

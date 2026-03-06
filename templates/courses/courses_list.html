@@ -9,9 +9,15 @@
 {% block body_content %}
     {% for course in courses %}
     <article>
+        {% if course.main_image %}
+        <picture>
+            <img src={{ course.main_image.thumbnails.large.url }}>
+
+        </picture>
+        {% endif %}
         <h3>{{course.title}}</h3>
         <p>{{course.date_creation}}</p>
-        <p>{{course.content|truncatewords:20}}</p>
+        <p>{{course.content|truncatewords:20|safe}}</p>
         <p><a href={% url "courses:course_detail" course.id %}>ver mas</a></p>
     </article>
     

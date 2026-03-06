@@ -1,12 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import User # Importamos el modelo de usuarios de Django
+from thumbnails.fields import ImageField 
+from django_ckeditor_5.fields import CKEditor5Field
 
 class Courses(models.Model):
     # Título de la noticia
     title = models.CharField(max_length=200, verbose_name="Nombre del curso")
     
     # Contenido extenso de la noticia
-    content = models.TextField(verbose_name="Contenido")
+    content = CKEditor5Field('Content', config_name='default')
     
     # Fecha de creación: auto_now_add pone la fecha automáticamente al crear el registro
     date_creation = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de Creación")
@@ -14,6 +15,8 @@ class Courses(models.Model):
     show_course = models.BooleanField(default=False, verbose_name="mostrar curso")
 
     topics = models.FileField(upload_to='tempario/pdf/', null=True, blank=True)
+
+    main_image=ImageField(upload_to='image/',null=True , blank=True)
 
     class Meta:
         verbose_name = "curso"

@@ -8,6 +8,7 @@ django = "==5.0"
 django-thumbnails = "*"
 pillow = "*"
 django-ckeditor-5 = "*"
+python-dotenv = "*"
 
 [dev-packages]
 flake8 = "*"

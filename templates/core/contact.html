@@ -4,3 +4,22 @@
 
 {% block body_title %}Contact{% endblock body_title %}
 
+{% block body_content %}
+
+    {% if messages.success %}
+        {% for message in messages %}
+            <div  role="alert">
+                {{ message }}
+                <button type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% else %}
+    <form method="post" novalidate>
+        {% csrf_token %}
+        
+        {{form.as_p}}
+        
+        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+    </form>
+    {% endif %}
+{% endblock body_content %}

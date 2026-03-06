@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # Templates
@@ -178,3 +180,16 @@ CKEDITOR_5_CONFIGS = {
         'toolbar': ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'imageUpload',],
     },
 }
+
+# Servidor de salida de Gmail
+EMAIL_HOST = 'smtp.gmail.com'
+# Puerto estándar para conexiones seguras
+EMAIL_PORT = 587
+# Tu correo de Conquer Blocks
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+# La clave de 16 caracteres generada en Google
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+# Activamos el cifrado de seguridad
+EMAIL_USE_TLS = True
+# Dirección por defecto que aparecerá como remitente
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

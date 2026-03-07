@@ -1,5 +1,11 @@
-{% extends "layout.html" %}
-
-{% block head_title %}Register{% endblock head_title %}
-
-{% block body_title %}Register{% endblock body_title %}
+{% extends "layout.html" %} 
+{% block head_title %}Registro{% endblock head_title %} 
+{% block body_title %}Registro{% endblock body_title %} 
+{% block body_content %}
+<h2>Crea tu cuenta</h2>
+<form method="POST">
+  {% csrf_token %} 
+  {{ form.as_p }}
+  <button type="submit">Registrarse</button>
+</form>
+{% endblock body_content %}

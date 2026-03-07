@@ -9,13 +9,14 @@ django-thumbnails = "*"
 pillow = "*"
 django-ckeditor-5 = "*"
 python-dotenv = "*"
+pygraphviz = "*"
 
 [dev-packages]
 flake8 = "*"
-django-debug-toolbar = "*"
 django-extensions = "*"
 pygraphviz = "*"
 django = "==5.0"
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.12"

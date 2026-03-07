@@ -193,3 +193,9 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 # Dirección por defecto que aparecerá como remitente
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+
+LOGIN_URL = '/login/'         # A donde va si no está logueado
+LOGIN_REDIRECT_URL = '/'   # A donde va tras loguearse con éxito
+LOGOUT_REDIRECT_URL = '/'  # A donde va tras cerrar sesión

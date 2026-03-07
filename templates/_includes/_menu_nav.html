@@ -4,11 +4,18 @@
         <li><a href={% url "core:home" %}>Home</a></li>
         <li><a href={% url "core:about_us" %}>About us</a></li>
         <li><a href={% url "core:contact" %}>Contact</a></li>
-        <li><a href={% url "core:register" %}>Register</a></li>
-        <li><a href={% url "core:login" %}>Login</a></li>
         <li><a href={% url "blog:news" %}>Blog</a></li>
         <li><a href={% url "blog:search" %}>Busqueda</a></li>
         <li><a href={% url "courses:courses" %}>Courses</a></li>
+        {% if request.user.is_authenticated %}
+            <li><span>Hola, <strong>{{ request.user.username }}</strong></span></li>
+            <li><a href="{% url 'core:logout' %}">Cerrar Sesión (Logout)</a></li>
+        {% else %}
+            <li><a href="{% url 'core:login' %}">Iniciar Sesión</a></li>
+            <li><a href="{% url 'core:register' %}">Registrarse</a></li>
+        {% endif %}
         
     </ul>
 </nav>
+
+        

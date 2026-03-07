@@ -1,0 +1,3 @@
+# Ignorar todos los archivos HTML porque usamos sintaxis de Django
+*.html
+templates/**/*.html

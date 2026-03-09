@@ -20,7 +20,10 @@
         <p>{{course.content|truncatewords:20|safe}}</p>
         <p><a href={% url "courses:course_detail" course.id %}>ver mas</a></p>
     </article>
-    
     {% endfor %}
+
+    <p>
+        <a href="{% url "courses:new_course" %}">Crear un nuevo Curso</a>
+    </p>
 
 {% endblock body_content %}

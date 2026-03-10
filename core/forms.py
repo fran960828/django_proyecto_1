@@ -1,46 +1,46 @@
 from django import forms
-from django.utils.translation import gettext_lazy as _
-from django.core.validators import EmailValidator
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from .models import ContactMessage  # Asegúrate de importar tu modelo
 
-class ContactForm(forms.Form):
-    """
-    Formulario de contacto con validación integrada y estilos CSS.
-    """
+
+
+class ContactForm(forms.ModelForm): # <--- Cambiado de forms.Form a forms.ModelForm
     
-    name = forms.CharField(
-        label=_("Nombre completo"),
-        max_length=100,
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'placeholder': _("Tu nombre aquí..."),
-        })
-    )
+    class Meta:
+        model = ContactMessage
+        # Definimos los campos que el ModelForm debe manejar
+        fields = ['name', 'email', 'message']
+        
+        # Mantenemos tus widgets personalizados aquí
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': ("Tu nombre aquí..."),
+            }),
+            'email': forms.EmailInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'ejemplo@correo.com',
+            }),
+            'message': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 5,
+                'placeholder': ("¿En qué podemos ayudarte?"),
+            }),
+        }
+        
+        # Mantenemos tus etiquetas (labels)
+        labels = {
+            'name': ("Nombre completo"),
+            'email': ("Correo electrónico"),
+            'message': ("Comentario o mensaje"),
+        }
 
-    email = forms.EmailField(
-        label=_("Correo electrónico"),
-        validators=[EmailValidator(message=_("Introduce un email válido."))],
-        widget=forms.EmailInput(attrs={
-            'class': 'form-control',
-            'placeholder': 'ejemplo@correo.com',
-        })
-    )
-
-    message = forms.CharField(
-        label=_("Comentario o mensaje"),
-        widget=forms.Textarea(attrs={
-            'class': 'form-control',
-            'rows': 5,
-            'placeholder': _("¿En qué podemos ayudarte?"),
-        })
-    )
-
+    # Tu validación personalizada clean_message se queda EXACTAMENTE IGUAL
     def clean_message(self):
-        """Validación personalizada: Evita mensajes demasiado cortos."""
         data = self.cleaned_data.get('message')
-        if len(data) < 10:
-            raise forms.ValidationError(_("El mensaje debe tener al menos 10 caracteres."))
+        if data and len(data) < 10:
+            raise forms.ValidationError(("El mensaje debe tener al menos 10 caracteres."))
         return data
 
 

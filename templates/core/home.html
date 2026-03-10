@@ -11,6 +11,28 @@
     <section class="hero" >
         <p>Formación tecnológica de alto nivel para los líderes del futuro.</p>
     </section>
+    <section class="cursos">
+        <h2>Nuestros Cursos</h2>
+        <div class="row">
+            {% for curso in courses %}
+                <div>
+                    <h3>{{ curso.title }}</h3>
+                    <p>{{ curso.content|truncatewords:20 }}</p>
+                </div>
+            {% empty %}
+                <p>Próximamente nuevos cursos.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section>
+        <h2>Último en el Blog</h2>
+        <ul>
+            {% for post in news %}
+                <li>{{ post.title }} - <small>{{ post.data_creation|date:"M Y" }}</small></li>
+            {% endfor %}
+        </ul>
+    </section>
 </main>
 
 {% endblock body_content %}

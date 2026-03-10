@@ -5,10 +5,10 @@
 {% block body_title %}Creación de un nuevo Curso{% endblock body_title %}
 
 {% block body_content %}
-<form action=""method="POST">
+<form action=""method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
-    <button type='submit'>Enviar</button>
+    <button type='submit'>Guardar curso</button>
 </form>
 
 {% endblock body_content %}

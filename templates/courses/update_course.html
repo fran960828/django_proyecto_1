@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block head_title %}Actualización Curso{% endblock head_title %}
+
+{% block body_title %}Actualización del curso{% endblock body_title %}
+
+{% block body_content %}
+<form action=""method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type='submit'>Guardar cambios</button>
+    <a href={% url "courses:list" %}>Cancelar</a>
+</form>
+
+{% endblock body_content %}

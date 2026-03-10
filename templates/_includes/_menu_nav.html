@@ -5,8 +5,7 @@
         <li><a href={% url "core:about_us" %}>About us</a></li>
         <li><a href={% url "core:contact" %}>Contact</a></li>
         <li><a href={% url "blog:news" %}>Blog</a></li>
-        <li><a href={% url "blog:search" %}>Busqueda</a></li>
-        <li><a href={% url "courses:courses" %}>Courses</a></li>
+        <li><a href={% url "courses:list" %}>Courses</a></li>
         {% if request.user.is_authenticated %}
             <li><span>Hola, <strong>{{ request.user.username }}</strong></span></li>
             <li><a href="{% url 'core:logout' %}">Cerrar Sesión (Logout)</a></li>

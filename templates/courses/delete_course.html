@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block head_title %}Eliminar Curso{% endblock head_title %}
+
+{% block body_title %}¿Estas seguro de Eliminar {{object}}?{% endblock body_title %}
+
+{% block body_content %}
+<form action=""method="POST">
+    {% csrf_token %}
+    <button type='submit'>Eliminar</button>
+</form>
+
+{% endblock body_content %}

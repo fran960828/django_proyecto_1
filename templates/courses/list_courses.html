@@ -7,7 +7,11 @@
 
 
 {% block body_content %}
-    {% for course in courses %}
+     <p>
+        <a href="{% url "courses:create" %}">Crear un nuevo Curso</a>
+    </p>
+
+    {% for course in list %}
     <article>
         {% if course.main_image %}
         <picture>
@@ -18,12 +22,10 @@
         <h3>{{course.title}}</h3>
         <p>{{course.date_creation}}</p>
         <p>{{course.content|truncatewords:20|safe}}</p>
-        <p><a href={% url "courses:course_detail" course.id %}>ver mas</a></p>
+        <p><a href={% url "courses:detail" course.pk %}>ver mas</a></p>
     </article>
     {% endfor %}
 
-    <p>
-        <a href="{% url "courses:new_course" %}">Crear un nuevo Curso</a>
-    </p>
+   
 
 {% endblock body_content %}

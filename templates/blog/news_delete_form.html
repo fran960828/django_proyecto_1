@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block head_title %}BLOG{% endblock head_title %}
+
+{% block body_title %}¿Estas seguro de eliminar {{object}}?{% endblock body_title %}
+
+
+
+{% block body_content %}
+    <form action="" method='POST'>
+        {% csrf_token %}
+        <button type='submit'>Eliminar Noticia</button>
+
+    </form>
+
+{% endblock body_content %}

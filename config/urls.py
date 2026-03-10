@@ -25,7 +25,7 @@ urlpatterns = [
     path("ckeditor5/", include('django_ckeditor_5.urls')),
     path("",include('core.urls')),
     path("",include('blog.urls')),
-    path("",include('courses.urls'))
+    path("courses",include('courses.urls'))
 ]
 
 if DEBUG:

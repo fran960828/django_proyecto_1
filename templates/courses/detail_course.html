@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block head_title %}Curso{% endblock head_title %}
+
+{% block body_title %}{{detail.title}}{% endblock body_title %}
+
+{% block body_content %}
+    <section class="hero">
+        {% if detail.main_image %}
+        <picture>
+            <img src={{ detail.main_image.thumbnails.small.url }}>
+
+        </picture>
+        {% endif %}
+        <p>{{detail.date_creation}}</p>
+        <p>{{detail.content|safe}}</p>
+        {% if detail.topics %}
+            <a href="{{ detail.topics.url }}" 
+            download>
+            ⬇️ Descargar Temario (PDF)
+            </a>
+            
+        {% else %}
+            <p>⚠️ El temario aún no está disponible para este curso.</p>
+        {% endif %}
+    </section>
+    <p>
+        <a href={% url "courses:update" detail.pk %}>Editar</a>
+        <a href={% url "courses:delete" detail.pk %}>Eliminar</a>
+    </p>
+
+{% endblock body_content %}

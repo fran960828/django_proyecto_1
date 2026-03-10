@@ -1,6 +1,4 @@
-from django.shortcuts import render
+from django.views.generic import TemplateView
 
-# Create your views here.
-def about_us_view(request):
-    
-    return render(request,'core/about_us.html')
+class AboutUsView(TemplateView):
+    template_name = "core/about_us.html" # Solo definimos la ruta del template

@@ -1,20 +1,32 @@
-
+{% load i18n %}
 <nav>
     <ul>
-        <li><a href={% url "core:home" %}>Home</a></li>
-        <li><a href={% url "core:about_us" %}>About us</a></li>
-        <li><a href={% url "core:contact" %}>Contact</a></li>
-        <li><a href={% url "blog:news" %}>Blog</a></li>
-        <li><a href={% url "courses:list" %}>Courses</a></li>
+        <li><a href={% url "core:home" %}>{% trans 'Home' %}</a></li>
+        <li><a href={% url "core:about_us" %}>{% trans 'About us' %}</a></li>
+        <li><a href={% url "core:contact" %}>{% trans 'Contact' %}</a></li>
+        <li><a href={% url "blog:news" %}>{% trans 'Blog' %}</a></li>
+        <li><a href={% url "courses:list" %}>{% trans 'Courses' %}</a></li>
         {% if request.user.is_authenticated %}
             <li><span>Hola, <strong>{{ request.user.username }}</strong></span></li>
-            <li><a href="{% url 'core:logout' %}">Cerrar Sesión (Logout)</a></li>
+            <li><a href="{% url 'core:logout' %}">{% trans 'Logout' %}</a></li>
         {% else %}
-            <li><a href="{% url 'core:login' %}">Iniciar Sesión</a></li>
-            <li><a href="{% url 'core:register' %}">Registrarse</a></li>
+            <li><a href="{% url 'core:login' %}">{% trans 'Login' %}</a></li>
+            <li><a href="{% url 'core:register' %}">{% trans 'Register' %}</a></li>
         {% endif %}
         
     </ul>
 </nav>
 
-        
+<form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}">
+    <select name="language" onchange="this.form.submit()">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% for lang in LANGUAGES %}
+            <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected{% endif %}>
+                {{ lang.1 }}
+            </option>
+        {% endfor %}
+    </select>
+</form>       

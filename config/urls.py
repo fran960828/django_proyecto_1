@@ -15,18 +15,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls.i18n import i18n_patterns
 from django.urls import path,include
 from django.conf.urls.static import static
-from .settings import DEBUG,MEDIA_URL,MEDIA_ROOT
+from .settings import DEBUG,MEDIA_URL,MEDIA_ROOT,INSTALLED_APPS
 import debug_toolbar
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('i18n/', include('django.conf.urls.i18n')),
     path("ckeditor5/", include('django_ckeditor_5.urls')),
+]
+urlpatterns+=i18n_patterns(
     path("",include('core.urls')),
     path("",include('blog.urls')),
     path("courses",include('courses.urls'))
-]
+
+)
 
 if DEBUG:
     # Añadimos las URLs del Toolbar
@@ -36,3 +41,8 @@ if DEBUG:
     
     # 2. Agregamos la ruta para servir archivos MEDIA al FINAL
     urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
+
+if 'rosetta' in INSTALLED_APPS:
+    urlpatterns += [
+        path('rosetta/', include('rosetta.urls')),
+    ]

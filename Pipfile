@@ -10,6 +10,8 @@ pillow = "*"
 django-ckeditor-5 = "*"
 python-dotenv = "*"
 pygraphviz = "*"
+django-rosetta = "*"
+django-modeltranslation = "*"
 
 [dev-packages]
 flake8 = "*"
